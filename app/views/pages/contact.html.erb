@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Contact Us</h1>
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <%= flash[:notice] %>
+    </div>
+  <% elsif flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+  
+  <p>Please fill out the form below to get in touch with us:</p>
+  <%= form_with(model: @contact_form, url: contact_path, method: :post) do |form| %>
+    <div class="mb-3">
+      <%= form.label :name, "Name" %>
+      <%= form.text_field :name, class: "form-control", required: true %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :email, "Email" %>
+      <%= form.email_field :email, class: "form-control", required: true %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :message, "Message" %>
+      <%= form.text_area :message, class: "form-control", required: true %>
+    </div>
+    <%= form.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
